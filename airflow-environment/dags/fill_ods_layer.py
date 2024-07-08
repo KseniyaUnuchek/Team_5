@@ -5,8 +5,8 @@ from scripts.create_table import get_create_schema,get_create_tables
 
 dag = DAG('create_and_fill_tables_ods', description='create_tables_in_ods_layer', schedule_interval='@once', start_date=datetime.datetime(2024,7,2), catchup=False)
 
-create_schema = get_create_schema(dag)
-create_tables = get_create_tables(dag)
+create_schema = get_create_schema(dag, 'ods_ksusha')
+create_tables = get_create_tables(dag,'sql/create_tables_ods.sql')
 trancate = get_truncate_table(dag)
 fill = get_fill_tables(dag)
 
