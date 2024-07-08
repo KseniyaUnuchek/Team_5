@@ -2,11 +2,8 @@ from airflow import DAG
 import datetime
 from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 from airflow.operators.empty import EmptyOperator
-from airflow.models import Variable
 
-config = Variable.get('time_config', deserialize_json=True) # {time_start: "* * * * 1"}
-
-dag = DAG('test_connection_to_source_db', description='test', schedule_interval=config['time_start'], start_date=datetime.datetime(2024,7,2), catchup=False)
+dag = DAG('test_connection_to_db', description='test', schedule_interval='@once', start_date=datetime.datetime(2024,7,2), catchup=False)
 
 start_node = EmptyOperator(task_id="start_node", dag=dag)
 

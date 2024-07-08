@@ -72,6 +72,8 @@ x-airflow-common:
     # The following line can be used to set a custom config file, stored in the local config folder
     # If you want to use it, outcomment it and replace airflow.cfg with the name of your config file
     # AIRFLOW_CONFIG: '/opt/airflow/config/airflow.cfg'
+    AIRFLOW_CONN_SOURCE_DB: postgresql://etl_user_5:)uNZ6-EN@10.82.0.4:5432/source
+    AIRFLOW_CONN_ETL_DB_5: postgresql://etl_user_5:)uNZ6-EN@10.82.0.4:5432/etl_db_5
   volumes:
     - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs

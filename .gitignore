@@ -1,3 +1,5 @@
 airflow-environment/logs
 
 airflow-environment/dags/__*
+
+airflow-environment/dags/scripts/__*
