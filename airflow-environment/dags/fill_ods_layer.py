@@ -7,7 +7,7 @@ dag = DAG('create_and_fill_tables_ods', description='create_tables_in_ods_layer'
 
 create_schema = get_create_schema(dag, 'ods_ksusha')
 create_tables = get_create_tables(dag,'sql/create_tables_ods.sql')
-trancate = get_truncate_table(dag)
+trancate = get_truncate_table(dag, 'sql/truncate_tables.sql')
 fill = get_fill_tables(dag)
 
 create_schema >> create_tables >> trancate >> fill

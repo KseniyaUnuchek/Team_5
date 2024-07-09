@@ -15,9 +15,9 @@ def insert (**kwargs):
         src_cursor.execute(f"SELECT * FROM source_data.{table_name};")
         target.insert_rows(table=f"ods_ksusha.{table_name}", rows=src_cursor)
 
-def get_truncate_table(dag):
+def get_truncate_table(dag, sql_script):
     return SQLExecuteQueryOperator(task_id="truncate_tables",
-                            sql="sql/truncate_tables.sql",
+                            sql=f"{sql_script}",
                             conn_id="etl_db_5",
                             dag=dag)
 
