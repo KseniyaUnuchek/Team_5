@@ -3,4 +3,4 @@ SELECT "ResumeID", "UserID", "Активность"
 FROM ods_ksusha.резюмедар 
 WHERE "Активность" LIKE '%Да%'
 AND "ResumeID" IS NOT NULL
-AND "UserID" IS NOT NULL;
+AND "UserID" IN (SELECT id FROM dds_ksusha.employees);

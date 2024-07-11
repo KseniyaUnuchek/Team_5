@@ -23,4 +23,4 @@ with DAG(
     fill_table_skills_levels = get_fill_table_dds(dag, 'sql/fill_dds_skills_levels.sql', 'fill_table_skills_levels')
 
     create_schema >> create_tables >> truncate_tables >> fill_all_catalogs >> fill_table_skills >> fill_table_levels >> \
-    fill_table_cv_dar >> fill_table_employees >> fill_table_skills_levels
+    fill_table_employees >> fill_table_cv_dar >> fill_table_skills_levels

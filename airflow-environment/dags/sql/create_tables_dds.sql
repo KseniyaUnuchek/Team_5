@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS dds_ksusha.employees (
 
 CREATE TABLE IF NOT EXISTS dds_ksusha.cv_dar (
     id INT NOT NULL PRIMARY KEY,
-    empl_id INT NOT NULL,
+    empl_id INT NOT NULL REFERENCES dds_ksusha.employees(id),
     activity VARCHAR(50) NOT NULL
 );
 

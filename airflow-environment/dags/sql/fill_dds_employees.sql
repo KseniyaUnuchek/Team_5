@@ -11,8 +11,13 @@ WHERE (должность IS NOT NULL)
     AND (подразделения IS NOT NULL) 
     AND (подразделения != '-') 
     AND (подразделения != '')
-    AND src.id IN (SELECT empl_id FROM dds_ksusha.cv_dar);
+    AND src.id IN (SELECT "UserID"
+                    FROM ods_ksusha.резюмедар 
+                    WHERE "Активность" LIKE '%Да%'
+                    AND "ResumeID" IS NOT NULL
+                    AND "UserID" IS NOT NULL);
 
 /* Исправляю исходные данные о департаментах на очищенные*/
 UPDATE dds_ksusha.departments
 SET department = trim(regexp_replace(department, '[\.\s]+', ' ','g'));
+
