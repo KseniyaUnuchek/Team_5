@@ -5,10 +5,14 @@ LEFT JOIN dds_ksusha.positions AS p
 ON src.должность = p.position
 LEFT JOIN dds_ksusha.departments AS d 
 ON src.подразделения = d.department
-WHERE 
-    (должность IS NOT NULL) 
+WHERE (должность IS NOT NULL) 
     AND (должность != '-') 
     AND (должность != '') 
     AND (подразделения IS NOT NULL) 
     AND (подразделения != '-') 
     AND (подразделения != '')
+    AND src.id IN (SELECT empl_id FROM dds_ksusha.cv_dar);
+
+/* Исправляю исходные данные о департаментах на очищенные*/
+UPDATE dds_ksusha.departments
+SET department = trim(regexp_replace(department, '[\.\s]+', ' ','g'));

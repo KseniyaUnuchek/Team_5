@@ -1,12 +1,26 @@
-INSERT INTO dds_ksusha.skills_group (skill_group_name) 
-SELECT unnest(array['фреймворки', 'технологии', 'языки программирования', 'среды разработки', 'инструменты', 'базы данных']);
+INSERT INTO dds_ksusha.skills_group (id, skill_group_name) VALUES
+    (1, 'базы данных'),
+    (2, 'инструменты'),
+    (3, 'платформы'),
+    (4, 'среды разработки'),
+    (5, 'технологии'),
+    (6, 'фреймворки'),
+    (7, 'языки программирования'),
+    (8, 'отрасли'),
+    (9, 'предметные области');
+
 
 INSERT INTO dds_ksusha.departments (department)
-SELECT unnest(array(SELECT DISTINCT подразделения 
+SELECT unnest(array(SELECT DISTINCT подразделения
                     FROM ods_ksusha.сотрудники_дар 
-                    WHERE (подразделения IS NOT NULL) AND (подразделения != '-') AND (подразделения != '')));
+                    WHERE (подразделения IS NOT NULL) 
+                    AND (подразделения != '-') 
+                    AND (подразделения != '')));
 
 INSERT INTO dds_ksusha.positions (position)
 SELECT unnest(array(SELECT DISTINCT должность 
                     FROM ods_ksusha.сотрудники_дар 
-                    WHERE (должность IS NOT NULL) AND (должность != '-') AND (должность != '')));
+                    WHERE (должность IS NOT NULL) 
+                    AND (должность != '-') 
+                    AND (должность != '')));
+
