@@ -9,7 +9,9 @@ WITH src AS (
         FROM ods_ksusha.базы_данных_и_уровень_знаний_сотру
         WHERE дата != ''
         AND дата != '-'
-        AND дата IS NOT NULL) AS tt
+        AND дата != ' '
+        AND дата IS NOT NULL
+        AND дата::DATE < current_date) AS tt
     WHERE empl_id IS NOT NULL 
     AND level_id IS NOT NULL 
     AND skill_id IS NOT NULL
@@ -38,7 +40,9 @@ WITH src AS (
         FROM ods_ksusha.инструменты_и_уровень_знаний_сотр
         WHERE дата != ''
         AND дата != '-'
-        AND дата IS NOT NULL) AS tt
+        AND дата != ' '
+        AND дата IS NOT NULL
+        AND дата::DATE < current_date) AS tt
     WHERE empl_id IS NOT NULL 
     AND level_id IS NOT NULL 
     AND skill_id IS NOT NULL
@@ -67,7 +71,9 @@ WITH src AS (
         FROM ods_ksusha.платформы_и_уровень_знаний_сотруд
         WHERE дата != ''
         AND дата != '-'
-        AND дата IS NOT NULL) AS tt
+        AND дата != ' '
+        AND дата IS NOT NULL
+        AND дата::DATE < current_date) AS tt
     WHERE empl_id IS NOT NULL 
     AND level_id IS NOT NULL 
     AND skill_id IS NOT NULL
@@ -96,7 +102,9 @@ WITH src AS (
         FROM ods_ksusha.среды_разработки_и_уровень_знаний_
         WHERE дата != ''
         AND дата != '-'
-        AND дата IS NOT NULL) AS tt
+        AND дата != ' '
+        AND дата IS NOT NULL
+        AND дата::DATE < current_date) AS tt
     WHERE empl_id IS NOT NULL 
     AND level_id IS NOT NULL 
     AND skill_id IS NOT NULL
@@ -125,7 +133,9 @@ WITH src AS (
         FROM ods_ksusha.технологии_и_уровень_знаний_сотру
         WHERE дата != ''
         AND дата != '-'
-        AND дата IS NOT NULL) AS tt
+        AND дата != ' '
+        AND дата IS NOT NULL
+        AND дата::DATE < current_date) AS tt
     WHERE empl_id IS NOT NULL 
     AND level_id IS NOT NULL 
     AND skill_id IS NOT NULL
@@ -154,7 +164,9 @@ WITH src AS (
         FROM ods_ksusha.фреймворки_и_уровень_знаний_сотру
         WHERE дата != ''
         AND дата != '-'
-        AND дата IS NOT NULL) AS tt
+        AND дата != ' '
+        AND дата IS NOT NULL
+        AND дата::DATE < current_date) AS tt
     WHERE empl_id IS NOT NULL 
     AND level_id IS NOT NULL 
     AND skill_id IS NOT NULL
@@ -183,7 +195,9 @@ WITH src AS (
         FROM ods_ksusha.языки_программирования_и_уровень
         WHERE дата != ''
         AND дата != '-'
-        AND дата IS NOT NULL) AS tt
+        AND дата != ' '
+        AND дата IS NOT NULL
+        AND дата::DATE < current_date) AS tt
     WHERE empl_id IS NOT NULL 
     AND level_id IS NOT NULL 
     AND skill_id IS NOT NULL
@@ -212,7 +226,9 @@ WITH src AS (
         FROM ods_ksusha.опыт_сотрудника_в_отраслях
         WHERE дата != ''
         AND дата != '-'
-        AND дата IS NOT NULL) AS tt
+        AND дата != ' '
+        AND дата IS NOT NULL
+        AND дата::DATE < current_date) AS tt
     WHERE empl_id IS NOT NULL 
     AND skill_id IS NOT NULL 
     AND level_id IS NOT NULL
@@ -241,7 +257,9 @@ WITH src AS (
         FROM ods_ksusha.опыт_сотрудника_в_предметных_обла
         WHERE дата != ''
         AND дата != '-'
-        AND дата IS NOT NULL)AS tt
+        AND дата != ' '
+        AND дата IS NOT NULL
+        AND дата::DATE < current_date)AS tt
     WHERE empl_id IS NOT NULL 
     AND skill_id IS NOT NULL 
     AND level_id IS NOT NULL
@@ -276,12 +294,17 @@ WITH src AS (
         OR id IS NULL
         OR "название" = ''
         OR "название" = '-'
+        OR "название" = ' '
         OR "Базы данных" = ''
         OR "Базы данных" = '-'
+        OR "Базы данных" = ' '
         OR "Уровень знаний" = ''
         OR "Уровень знаний" = '-'
+        OR "Уровень знаний" = ' '
         OR дата = '' 
         OR дата = '-' 
+        OR дата = ' ' 
+        OR дата::DATE > current_date
         OR id = 0) AS tt
 )
 SELECT src.id, 
@@ -313,12 +336,17 @@ WITH src AS (
         OR id IS NULL
         OR название = ''
         OR название = '-'
+        OR название = ' '
         OR инструменты = ''
         OR инструменты = '-'
+        OR инструменты = ' '
         OR "Уровень знаний" = ''
         OR "Уровень знаний" = '-'
+        OR "Уровень знаний" = ' '
         OR дата = '' 
         OR дата = '-' 
+        OR дата = ' '
+        OR дата::DATE > current_date
         OR id = 0) AS tt
 )
 SELECT src.id, 
@@ -351,10 +379,14 @@ WITH src AS (
         OR "User ID" = 0
         OR платформы = ''
         OR платформы = '-'
+        OR платформы = ' '
         OR "Уровень знаний" = ''
         OR "Уровень знаний" = '-'
+        OR "Уровень знаний" = ' '
         OR дата = '' 
         OR дата = '-' 
+        OR дата = ' '
+        OR дата::DATE > current_date
         OR id = 0) AS tt
 )
 SELECT src.id, 
@@ -386,12 +418,17 @@ WITH src AS (
         OR id IS NULL
         OR название = ''
         OR название = '-'
+        OR название = ' '
         OR "Среды разработки" = ''
         OR "Среды разработки" = '-'
+        OR "Среды разработки" = ' '
         OR "Уровень знаний" = ''
         OR "Уровень знаний" = '-'
+        OR "Уровень знаний" = ' '
         OR дата = '' 
         OR дата = '-' 
+        OR дата = ' '
+        OR дата::DATE > current_date
         OR id = 0) AS tt
 )
 SELECT src.id, 
@@ -423,12 +460,17 @@ WITH src AS (
         OR id IS NULL
         OR название = ''
         OR название = '-'
+        OR название = ' '
         OR технологии = ''
         OR технологии = '-'
+        OR технологии = ' '
         OR "Уровень знаний" = ''
         OR "Уровень знаний" = '-'
+        OR "Уровень знаний" = ' '
         OR дата = '' 
-        OR дата = '-' 
+        OR дата = '-'
+        OR дата = ' ' 
+        OR дата::DATE > current_date
         OR id = 0) AS tt
 )
 SELECT src.id, 
@@ -460,12 +502,17 @@ WITH src AS (
         OR id IS NULL
         OR название = ''
         OR название = '-'
+        OR название = ' '
         OR фреймворки = ''
         OR фреймворки = '-'
+        OR фреймворки = ' '
         OR "Уровень знаний" = ''
         OR "Уровень знаний" = '-'
+        OR "Уровень знаний" = ' '
         OR дата = '' 
         OR дата = '-' 
+        OR дата = ' '
+        OR дата::DATE > current_date
         OR id = 0) AS tt
 )
 SELECT src.id, 
@@ -497,12 +544,17 @@ WITH src AS (
         OR id IS NULL
         OR название = ''
         OR название = '-'
+        OR название = ' '
         OR "Языки программирования" = ''
         OR "Языки программирования"= '-'
+        OR "Языки программирования" = ' '
         OR "Уровень знаний" = ''
         OR "Уровень знаний" = '-'
+        OR "Уровень знаний" = ' '
         OR дата = '' 
         OR дата = '-' 
+        OR дата = ' '
+        OR дата::DATE > current_date
         OR id = 0) AS tt
 )
 SELECT src.id, 
@@ -535,10 +587,14 @@ WITH src AS (
         OR "User ID" = 0
         OR отрасли = ''
         OR отрасли = '-'
+        OR отрасли = ' '
         OR "Уровень знаний в отрасли" = ''
         OR "Уровень знаний в отрасли" = '-'
+        OR "Уровень знаний в отрасли" = ' '
         OR дата = '' 
         OR дата = '-' 
+        OR дата = ' '
+        OR дата::DATE > current_date
         OR id = 0) AS tt
 )
 SELECT src.id, 
@@ -571,10 +627,14 @@ WITH src AS (
         OR "User ID" = 0
         OR "Предментые области" = ''
         OR "Предментые области" = '-'
+        OR "Предментые области" = ' '
         OR "Уровень знаний в предметной облас" = ''
         OR "Уровень знаний в предметной облас" = '-'
+        OR "Уровень знаний в предметной облас" = ' '
         OR дата = '' 
         OR дата = '-' 
+        OR дата = ' '
+        OR дата::DATE > current_date
         OR id = 0)AS tt
 )
 SELECT src.id, 

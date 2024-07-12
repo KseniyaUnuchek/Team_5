@@ -12,6 +12,7 @@ FROM ods_ksusha.резюмедар
 WHERE "Активность" IS NULL
 OR "Активность" = ''
 OR "Активность" = '-'
+OR "Активность" = ' '
 OR "ResumeID" IS NULL
 OR "ResumeID" = 0
 OR "UserID" IS NULL

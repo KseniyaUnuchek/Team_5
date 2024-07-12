@@ -42,6 +42,7 @@ WHERE название IS NULL
 OR название = '-'
 OR название = ''
 OR название = '.'
+OR название = ' '
 OR id IS NULL
 OR id = 0;
 
@@ -52,6 +53,7 @@ WHERE название IS NULL
 OR название = '-'
 OR название = ''
 OR название = '.'
+OR название = ' '
 OR id IS NULL
 OR id = 0;
 
@@ -62,6 +64,7 @@ WHERE название IS NULL
 OR название = '-'
 OR название = ''
 OR название = '.'
+OR название = ' '
 OR id IS NULL
 OR id = 0;
 
@@ -72,6 +75,7 @@ WHERE название IS NULL
 OR название = '-'
 OR название = ''
 OR название = '.'
+OR название = ' '
 OR id IS NULL
 OR id = 0;
 
@@ -82,6 +86,7 @@ WHERE название IS NULL
 OR название = '-'
 OR название = ''
 OR название = '.'
+OR название = ' '
 OR id IS NULL
 OR id = 0;
 
@@ -92,6 +97,7 @@ WHERE название IS NULL
 OR название = '-'
 OR название = ''
 OR название = '.'
+OR название = ' '
 OR id IS NULL
 OR id = 0;
 
@@ -102,6 +108,7 @@ WHERE название IS NULL
 OR название = '-'
 OR название = ''
 OR название = '.'
+OR название = ' '
 OR id IS NULL
 OR id = 0;
 
@@ -112,6 +119,7 @@ WHERE название IS NULL
 OR название = '-'
 OR название = ''
 OR название = '.'
+OR название = ' '
 OR id IS NULL
 OR id = 0;
 
@@ -122,5 +130,6 @@ WHERE название IS NULL
 OR название = '-'
 OR название = ''
 OR название = '.'
+OR название = ' '
 OR id IS NULL
 OR id = 0;
