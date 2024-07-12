@@ -11,7 +11,7 @@ with DAG(
     catchup=False
 ) as dag:
 
-    create_schema = get_create_schema(dag, 'ods_ksusha')
+    create_schema = get_create_schema(dag, 'ods_ksusha', 'create_schema')
     create_tables = get_create_tables(dag,'sql/create_tables_ods.sql')
     trancate = get_truncate_table(dag, 'sql/truncate_tables.sql')
     fill = get_fill_tables(dag)

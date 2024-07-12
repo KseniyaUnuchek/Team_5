@@ -21,7 +21,7 @@
 - - - [create_table.py](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/scripts/create_table.py)
 - - - [create_tables_ods.sql]()
 - - - [truncate_tables.sqll]()
- - [fill_dds_layer.py](airflow-environment/dags/fill_dds_layer.py) - ДАГ, формирующий и заполняющий DDS-слой данными в соответствии с ER-диаграммой
+ - [fill_dds_layer.py](airflow-environment/dags/fill_dds_layer.py) - ДАГ, формирующий и заполняющий DDS-слой данными в соответствии с ER-диаграммой, а так же одновременно заполняющий слой-копию с ошибочными данными (bad_dds_ksusha)
  - - Исполняемые скрипты:
  - - - [fill_data.py](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/scripts/fill_data.py)
 - - - [create_table.py](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/scripts/create_table.py)

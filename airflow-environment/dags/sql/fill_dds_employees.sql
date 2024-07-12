@@ -21,3 +21,19 @@ WHERE (должность IS NOT NULL)
 UPDATE dds_ksusha.departments
 SET department = trim(regexp_replace(department, '[\.\s]+', ' ','g'));
 
+/* Заполнение слоя ошибок */
+INSERT INTO bad_dds_ksusha.employees(id, last_name, first_name, dep_id, FOC, pos_id)
+SELECT src.id, фамилия, имя, d.id, цфо, p.id 
+FROM ods_ksusha.сотрудники_дар AS src
+LEFT JOIN dds_ksusha.positions AS p 
+ON src.должность = p.position
+LEFT JOIN dds_ksusha.departments AS d 
+ON src.подразделения = d.department
+    WHERE подразделения IS NULL 
+    OR подразделения = '-'
+    OR подразделения = ''
+    OR src.id IS NULL
+    OR src.id = 0
+    OR должность IS NULL
+    OR должность = '-'
+    OR должность = '';
