@@ -10,20 +10,22 @@ INSERT INTO dds_ksusha.skills_group (id, skill_group_name) VALUES
     (9, 'предметные области');
 
 INSERT INTO dds_ksusha.departments (department)
-SELECT unnest(array(SELECT DISTINCT подразделения
-                    FROM ods_ksusha.сотрудники_дар 
-                    WHERE подразделения IS NOT NULL 
-                    AND подразделения != '-'
-                    AND подразделения != ''
-                    AND подразделения != ' '));
+SELECT подразделения
+FROM ods_ksusha.сотрудники_дар 
+WHERE подразделения IS NOT NULL 
+AND подразделения != '-'
+AND подразделения != ''
+AND подразделения != ' '
+GROUP BY подразделения;
 
 INSERT INTO dds_ksusha.positions (position)
-SELECT unnest(array(SELECT DISTINCT должность 
-                    FROM ods_ksusha.сотрудники_дар 
-                    WHERE должность IS NOT NULL
-                    AND должность != '-' 
-                    AND должность != ''
-                    AND должность != ' '));
+SELECT должность
+FROM ods_ksusha.сотрудники_дар 
+WHERE должность IS NOT NULL
+AND должность != '-' 
+AND должность != ''
+AND должность != ' '
+GROUP BY должность;
 
 /* Заполнения слоя ошибок */
 INSERT INTO bad_dds_ksusha.departments (empl_id,department)

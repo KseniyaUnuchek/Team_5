@@ -54,3 +54,6 @@ WHERE id = 115762;
 UPDATE dds_ksusha.levels
 SET level_num = 23
 WHERE id = 115763;
+
+INSERT INTO dds_ksusha.levels(id, level, level_num)
+VALUES (0, 'Не владеет', 0);

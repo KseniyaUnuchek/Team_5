@@ -1,4 +1,129 @@
+CREATE SEQUENCE IF NOT EXISTS skills_level_id_seq
+START WITH 0
+INCREMENT BY 1
+MINVALUE 0
+MAXVALUE 170000
+CACHE 1;
+
+ALTER SEQUENCE skills_level_id_seq RESTART WITH 1;
+
 INSERT INTO dds_ksusha.skills_levels(id, empl_id, skill_id, level_id, date)
+WITH cross_table AS(
+    SELECT e.id as empl_id, 
+    s.id as skill_id
+    FROM dds_ksusha.employees e 
+    CROSS JOIN dds_ksusha.skills s)
+SELECT nextval('skills_level_id_seq') AS id,
+cross_table.empl_id AS empl_id,
+cross_table.skill_id AS skill_id,
+0 AS level_id,
+TO_DATE('2000-01-01', 'YYYY-MM-DD') AS date
+FROM cross_table;
+
+INSERT INTO dds_ksusha.skills_levels(id, empl_id, skill_id, level_id, date)
+WITH src AS (
+    SELECT *
+    FROM (SELECT split_part("название", ':', 2)::INTEGER AS empl_id,
+        substring("Базы данных" FROM '\[([0-9]+)\]')::INTEGER AS skill_id,
+        substring("Уровень знаний" FROM '\[([0-9]+)\]')::INTEGER AS level_id,
+        дата as date, 
+        id
+        FROM ods_ksusha.базы_данных_и_уровень_знаний_сотру
+
+        UNION ALL
+
+        SELECT split_part(название, ':', 2)::INTEGER AS empl_id,
+        substring(инструменты FROM '\[([0-9]+)\]')::INTEGER AS skill_id,
+        substring("Уровень знаний" FROM '\[([0-9]+)\]')::INTEGER AS level_id,
+        дата as date, 
+        id
+        FROM ods_ksusha.инструменты_и_уровень_знаний_сотр
+
+        UNION ALL
+
+        SELECT "User ID"::INTEGER AS empl_id,
+        substring(платформы FROM '\[([0-9]+)\]')::INTEGER AS skill_id,
+        substring("Уровень знаний" FROM '\[([0-9]+)\]')::INTEGER AS level_id,
+        дата as date, 
+        id
+        FROM ods_ksusha.платформы_и_уровень_знаний_сотруд
+        
+        UNION ALL
+        
+        SELECT split_part(название, ':', 2)::INTEGER AS empl_id,
+        substring("Среды разработки" FROM '\[([0-9]+)\]')::INTEGER AS skill_id,
+        substring("Уровень знаний" FROM '\[([0-9]+)\]')::INTEGER AS level_id,
+        дата as date, 
+        id
+        FROM ods_ksusha.среды_разработки_и_уровень_знаний_
+        
+        UNION ALL
+        
+        SELECT split_part(название, ':', 2)::INTEGER AS empl_id,
+        substring(технологии FROM '\[([0-9]+)\]')::INTEGER AS skill_id,
+        substring("Уровень знаний" FROM '\[([0-9]+)\]')::INTEGER AS level_id,
+        дата as date, 
+        id
+        FROM ods_ksusha.технологии_и_уровень_знаний_сотру
+        
+        UNION ALL
+        
+        SELECT split_part(название, ':', 2)::INTEGER AS empl_id,
+        substring(фреймворки FROM '\[([0-9]+)\]')::INTEGER AS skill_id,
+        substring("Уровень знаний" FROM '\[([0-9]+)\]')::INTEGER AS level_id,
+        дата as date, 
+        id
+        FROM ods_ksusha.фреймворки_и_уровень_знаний_сотру
+        
+        UNION ALL
+        
+        SELECT split_part(название, ':', 2)::INTEGER AS empl_id,
+        substring("Языки программирования" FROM '\[([0-9]+)\]')::INTEGER AS skill_id,
+        substring("Уровень знаний" FROM '\[([0-9]+)\]')::INTEGER AS level_id,
+        дата as date, 
+        id
+        FROM ods_ksusha.языки_программирования_и_уровень
+        
+        UNION ALL
+        
+        SELECT "User ID"::INTEGER AS empl_id,
+        substring(отрасли FROM '\[([0-9]+)\]')::INTEGER AS skill_id,
+        substring("Уровень знаний в отрасли" FROM '\[([0-9]+)\]')::INTEGER AS level_id,
+        дата as date, 
+        id
+        FROM ods_ksusha.опыт_сотрудника_в_отраслях
+        
+        UNION ALL
+        
+        SELECT "User ID"::INTEGER AS empl_id,
+        substring("Предментые области" FROM '\[([0-9]+)\]')::INTEGER AS skill_id,
+        substring("Уровень знаний в предметной облас" FROM '\[([0-9]+)\]')::INTEGER AS level_id,
+        дата as date, 
+        id
+        FROM ods_ksusha.опыт_сотрудника_в_предметных_обла) AS union_src
+    WHERE union_src.empl_id IS NOT NULL 
+    AND union_src.level_id IS NOT NULL 
+    AND union_src.skill_id IS NOT null
+    and union_src.date != ''
+    AND union_src.date != '-'
+    AND union_src.date != ' '
+    AND union_src.date IS NOT NULL
+    AND union_src.date::DATE < current_date)
+
+SELECT src.id, 
+    e.id, 
+    s.id,
+    l.id, 
+    src.date::DATE  
+FROM src
+JOIN dds_ksusha.levels AS l
+ON src.level_id = l.id
+JOIN dds_ksusha.skills AS s
+ON src.skill_id = s.id
+JOIN dds_ksusha.employees AS e
+ON src.empl_id = e.id;
+
+/*INSERT INTO dds_ksusha.skills_levels(id, empl_id, skill_id, level_id, date)
 WITH src AS (
     SELECT *
     FROM (SELECT split_part("название", ':', 2)::INTEGER AS empl_id,
@@ -276,6 +401,7 @@ JOIN dds_ksusha.skills AS s
 ON src.skill_id = s.id
 JOIN dds_ksusha.employees AS e
 ON src.empl_id = e.id;
+*/
 
 /* Заполнение слоя с ошибками */
 INSERT INTO bad_dds_ksusha.skills_levels(id, empl_id, skill_id, level_id, date)
