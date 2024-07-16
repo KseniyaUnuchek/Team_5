@@ -129,14 +129,3 @@ SET "junior_%" = CASE
                     THEN 100.0-"project_%"-"novice_%"-"middle_%"-"senior_%"-"expert_%"
                     ELSE 0
                 END;
-
-
-
-/*COUNT(DISTINCT CASE WHEN level_id != 0 THEN empl_id END)*100/COUNT(DISTINCT empl_id) AS "employees_skill_%",
-	COUNT(DISTINCT CASE WHEN level_id = 283045 THEN empl_id END)*100/CASE WHEN COUNT(DISTINCT CASE WHEN level_id != 0 THEN empl_id END) = 0 THEN 1 END) AS "project_%",
-	COUNT(DISTINCT CASE WHEN level_id = 115637 THEN empl_id END)*100/CASE(WHEN COUNT(DISTINCT CASE WHEN level_id != 0 THEN empl_id END) = 0 THEN 1 END) AS "novice_%",
-	COUNT(DISTINCT CASE WHEN level_id = 115638 THEN empl_id END)*100/CASE(WHEN COUNT(DISTINCT CASE WHEN level_id != 0 THEN empl_id END) = 0 THEN 1 END) AS "junior_%",
-	COUNT(DISTINCT CASE WHEN level_id = 115639 THEN empl_id END)*100/CASE(WHEN COUNT(DISTINCT CASE WHEN level_id != 0 THEN empl_id END) = 0 THEN 1 END) AS "middle_%",
-	COUNT(DISTINCT CASE WHEN level_id = 115640 THEN empl_id END)*100/CASE(WHEN COUNT(DISTINCT CASE WHEN level_id != 0 THEN empl_id END) = 0 THEN 1 END) AS "senior_%",
-	COUNT(DISTINCT CASE WHEN level_id = 115641 THEN empl_id END)*100/CASE(WHEN COUNT(DISTINCT CASE WHEN level_id != 0 THEN empl_id END) = 0 THEN 1 END) AS "expert_%"*/
-    
