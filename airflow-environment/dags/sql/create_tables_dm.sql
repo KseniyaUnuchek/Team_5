@@ -59,4 +59,5 @@ CREATE TABLE IF NOT EXISTS dm_ksusha.complex_date(
     "expert_%" FLOAT NULL,
     AVR_level_1 FLOAT NOT NULL,
     AVR_level_2 INT NULL
+
 );
