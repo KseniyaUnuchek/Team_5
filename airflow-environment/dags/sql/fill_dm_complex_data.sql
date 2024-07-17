@@ -1,4 +1,4 @@
-INSERT INTO dm_ksusha.complex_date(year_finish, dep_id, pos_id, skill_id, employees, employees_skill, project,
+INSERT INTO dm_ksusha.complex_data(year_finish, dep_id, pos_id, skill_id, employees, employees_skill, project,
 novice, junior, middle, senior, expert, AVR_level_1, AVR_level_2)
 SELECT
 	"year", 
@@ -67,63 +67,63 @@ GROUP BY "year",
 		pos_id,
 		skill_id;
 
-UPDATE dm_ksusha.complex_date
+UPDATE dm_ksusha.complex_data
 SET "employees_skill_%" = employees_skill*100.0/employees;
 
-UPDATE dm_ksusha.complex_date
+UPDATE dm_ksusha.complex_data
 SET "employees_skill_%" = ROUND("employees_skill_%"::numeric, 2);
 
-UPDATE dm_ksusha.complex_date
+UPDATE dm_ksusha.complex_data
 SET "project_%" = project*100.0/(CASE
 				                WHEN employees_skill = 0
 				                THEN 1
 				                ELSE employees_skill
 				            END);
 
-UPDATE dm_ksusha.complex_date
+UPDATE dm_ksusha.complex_data
 SET "project_%" = ROUND("project_%"::numeric, 2);
 
-UPDATE dm_ksusha.complex_date
+UPDATE dm_ksusha.complex_data
 SET "novice_%" = novice*100.0/(CASE
 				                WHEN employees_skill = 0
 				                THEN 1
 				                ELSE employees_skill
 				            END);
 
-UPDATE dm_ksusha.complex_date
+UPDATE dm_ksusha.complex_data
 SET "novice_%" = ROUND("novice_%"::numeric, 2);
 
-UPDATE dm_ksusha.complex_date
+UPDATE dm_ksusha.complex_data
 SET "middle_%" = middle*100.0/(CASE
 				                WHEN employees_skill = 0
 				                THEN 1
 				                ELSE employees_skill
 				            END);  
 
-UPDATE dm_ksusha.complex_date
+UPDATE dm_ksusha.complex_data
 SET "middle_%" = ROUND("middle_%"::numeric, 2);
 
-UPDATE dm_ksusha.complex_date
+UPDATE dm_ksusha.complex_data
 SET "senior_%" = senior*100.0/(CASE
 				                WHEN employees_skill = 0
 				                THEN 1
 				                ELSE employees_skill
 				            END); 
 
-UPDATE dm_ksusha.complex_date
+UPDATE dm_ksusha.complex_data
 SET "senior_%"= ROUND("senior_%"::numeric, 2);
 
-UPDATE dm_ksusha.complex_date
+UPDATE dm_ksusha.complex_data
 SET "expert_%" = expert*100.0/(CASE
 				                WHEN employees_skill = 0
 				                THEN 1
 				                ELSE employees_skill
 				            END);
 
-UPDATE dm_ksusha.complex_date
+UPDATE dm_ksusha.complex_data
 SET "expert_%"= ROUND("expert_%"::numeric, 2);
 
-UPDATE dm_ksusha.complex_date
+UPDATE dm_ksusha.complex_data
 SET "junior_%" = CASE
                     WHEN junior != 0
                     THEN 100.0-"project_%"-"novice_%"-"middle_%"-"senior_%"-"expert_%"

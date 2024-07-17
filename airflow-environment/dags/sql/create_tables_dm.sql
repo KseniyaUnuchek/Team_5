@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS dm_ksusha.total_change(
     level_change_total INT NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS dm_ksusha.complex_date(
+CREATE TABLE IF NOT EXISTS dm_ksusha.complex_data(
     id SERIAL NOT NULL PRIMARY KEY,
     year_finish INT NOT NULL,
     dep_id INT NOT NULL,
@@ -59,5 +59,35 @@ CREATE TABLE IF NOT EXISTS dm_ksusha.complex_date(
     "expert_%" FLOAT NULL,
     AVR_level_1 FLOAT NOT NULL,
     AVR_level_2 INT NULL
+);
 
+CREATE TABLE IF NOT EXISTS dm_ksusha.employees_statistic(
+    id SERIAL PRIMARY KEY,
+    marker VARCHAR(50) NOT NULL,
+    start_year INT NOT NULL,
+    finish_year INT NOT NULL,
+    empl_id INT NOT NULL,
+    dep_id INT NOT NULL,
+    pos_id INT NOT NULL,
+    group_id INT NOT NULL,
+    skill_id INT NOT NULL,
+    level_id INT NOT NULL,
+    level_change INT NOT NULL,
+    level_change_total NUMERIC NOT NULL,
+    avr_skill_level NUMERIC NOT NULL,
+    empl_total_count INT NOT NULL,
+    empl_count INT NOT NULL,
+    empl_project_count INT NOT NULL,
+    empl_novice_count INT NOT NULL,
+    empl_junior_count INT NOT NULL,
+    empl_middle_count INT NOT NULL,
+    empl_senior_count INT NOT NULL,
+    empl_expert_count INT NOT NULL,
+    empl_pct NUMERIC(5, 2) NOT NULL,
+    empl_project_pct NUMERIC(5, 2) NOT NULL,
+    empl_novice_pct NUMERIC(5, 2) NOT NULL,
+    empl_junior_pct NUMERIC(5, 2) NOT NULL,
+    empl_middle_pct NUMERIC(5, 2) NOT NULL,
+    empl_senior_pct NUMERIC(5, 2) NOT NULL,
+    empl_expert_pct NUMERIC(5, 2) NOT NULL
 );
