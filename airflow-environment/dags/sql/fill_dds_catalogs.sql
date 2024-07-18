@@ -9,14 +9,49 @@ INSERT INTO dds_ksusha.skills_group (id, skill_group_name) VALUES
     (8, 'отрасли'),
     (9, 'предметные области');
 
-INSERT INTO dds_ksusha.departments (department)
-SELECT подразделения
+INSERT INTO dds_ksusha.m_departaments(old_department)
+SELECT trim(regexp_replace(подразделения, '[\.\s]+', ' ','g'))
 FROM ods_ksusha.сотрудники_дар 
 WHERE подразделения IS NOT NULL 
 AND подразделения != '-'
 AND подразделения != ''
 AND подразделения != ' '
-GROUP BY подразделения;
+GROUP BY trim(regexp_replace(подразделения, '[\.\s]+', ' ','g'));
+
+UPDATE dds_ksusha.m_departaments
+SET department = old_department;
+
+UPDATE dds_ksusha.m_departaments
+SET department = 'Data Platform: Центр компетенций'
+WHERE department LIKE '%Data Platform группа%';
+
+UPDATE dds_ksusha.m_departaments
+SET department = 'Направление BI'
+WHERE department LIKE '% BI%' OR department LIKE '%Группа Центров Компетенций%';
+
+UPDATE dds_ksusha.m_departaments
+SET department = 'Бизнес-аналитика. Общая практика'
+WHERE department LIKE '%Бизнес-аналитика общей практики: Центр компетенций%';
+
+UPDATE dds_ksusha.m_departaments
+SET department = 'Sales, Marketing & Business Development'
+WHERE department LIKE '%SMBD%';
+
+UPDATE dds_ksusha.m_departaments
+SET department = 'Направление DWH&ML'
+WHERE department LIKE '%Направление DWH&ML%';
+
+UPDATE dds_ksusha.m_departaments
+SET department = 'Группа технической поддержки РЖД'
+WHERE department LIKE '%Группа технической поддержки РЖД%';
+
+UPDATE dds_ksusha.m_departaments
+SET department = 'Бизнес-аналитика по работе с гос.компаниями'
+WHERE department LIKE '%Бизнес-аналитика по работе с гос компаниями%';
+
+UPDATE dds_ksusha.m_departaments
+SET department = 'Управление проектами РЖД'
+WHERE department LIKE '%Центр компетенций по управлению проектами РЖД%';
 
 INSERT INTO dds_ksusha.positions (position)
 SELECT должность

@@ -20,6 +20,7 @@ with DAG(
     fill_table_total_change = get_fill_table(dag, 'sql/fill_dm_total_change.sql', 'fill_table_total_change')
     fill_table_complex_data = get_fill_table(dag, 'sql/fill_dm_complex_data.sql', 'fill_table_complex_data')
     fill_table_employees_statistic = get_fill_table(dag,'sql/fill_dm_employees_statistic.sql','fill_table_employees_statistic')
+    copy_catalogs = get_fill_table(dag, 'sql/fill_dm_catalogs.sql', 'copy_catalogs')
 
     create_schema >> create_tables >> trancate >> fill_table_now >> fill_table_compare >> fill_table_total_change \
-    >> fill_table_complex_data >> fill_table_employees_statistic
+    >> fill_table_complex_data >> fill_table_employees_statistic >> copy_catalogs

@@ -1,3 +1,15 @@
+CREATE TABLE IF NOT EXISTS dm_ksusha.employees AS TABLE dds_ksusha.employees WITH NO DATA;
+
+CREATE TABLE IF NOT EXISTS dm_ksusha.departments AS TABLE dds_ksusha.departments WITH NO DATA;
+
+CREATE TABLE IF NOT EXISTS dm_ksusha.positions AS TABLE  dds_ksusha.positions WITH NO DATA;
+
+CREATE TABLE IF NOT EXISTS dm_ksusha.skills_group AS TABLE dds_ksusha.skills_group WITH NO DATA;
+
+CREATE TABLE IF NOT EXISTS dm_ksusha.skills AS TABLE dds_ksusha.skills WITH NO DATA;
+
+CREATE TABLE IF NOT EXISTS dm_ksusha.levels AS TABLE dds_ksusha.levels WITH NO DATA;
+
 CREATE TABLE IF NOT EXISTS dm_ksusha.now(
     id SERIAL NOT NULL PRIMARY KEY,
     year INT NOT NULL,

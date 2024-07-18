@@ -4,7 +4,7 @@ FROM ods_ksusha.сотрудники_дар AS src
 LEFT JOIN dds_ksusha.positions AS p 
 ON src.должность = p.position
 LEFT JOIN dds_ksusha.departments AS d 
-ON src.подразделения = d.department
+ON trim(regexp_replace(src.подразделения, '[\.\s]+', ' ','g')) = d.department
 WHERE должность IS NOT NULL
 AND должность != '-'
 AND должность != ''
@@ -19,9 +19,17 @@ AND src.id IN (SELECT "UserID"
                 AND "ResumeID" IS NOT NULL
                 AND "UserID" IS NOT NULL);
 
-/* Исправляю исходные данные о департаментах на очищенные*/
+/* Добавляю имена-заглушки */
+UPDATE dds_ksusha.employees
+SET last_name = 'Иванов';
+
+UPDATE dds_ksusha.employees
+SET first_name = 'Иван'|| id;
+
+
+/* Исправляю данные о департаментах в соответствии с справочником подразделений от аналитиков */
 UPDATE dds_ksusha.departments
-SET department = trim(regexp_replace(department, '[\.\s]+', ' ','g'));
+SET department = ''
 
 /* Заполнение слоя ошибок */
 INSERT INTO bad_dds_ksusha.employees(id, last_name, first_name, dep_id, FOC, pos_id)
