@@ -45,3 +45,5 @@
 - - - [fill_dm_compare.sql](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/sql/fill_dm_compare.sql)
 - - - [fill_dm_total_change.sql](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/sql/fill_dm_total_change.sql)
 - - - [fill_dm_complex_data.sql](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/sql/fill_dm_complex_data.sql)
+- - - [fill_dm_catalogs.sql](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/sql/fill_dm_catalogs.sql)
+- - - [fill_dm_employees_statistic.sql](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/sql/fill_dm_employees_statistic.sql)

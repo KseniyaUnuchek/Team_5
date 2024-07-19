@@ -78,4 +78,4 @@ LEFT JOIN dm_ksusha.complex_data cd
 ON c.finish_year = cd.year_finish 
 AND c.dep_id = cd.dep_id 
 AND c.pos_id = cd.pos_id 
-AND c.skill_id = cd.skill_id
+AND c.skill_id = cd.skill_id;
