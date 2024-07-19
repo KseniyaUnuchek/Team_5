@@ -1,3 +1,38 @@
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_tables WHERE schemaname = 'dm_ksusha' AND tablename = 'employees') THEN
+        CREATE TABLE dm_ksusha.employees (
+            LIKE dds_ksusha.employees INCLUDING ALL
+        );
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_tables WHERE schemaname = 'dm_ksusha' AND tablename = 'departments') THEN
+        CREATE TABLE dm_ksusha.departments (
+            LIKE dds_ksusha.departments INCLUDING ALL
+        );
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_tables WHERE schemaname = 'dm_ksusha' AND tablename = 'positions') THEN
+        CREATE TABLE dm_ksusha.positions (
+            LIKE dds_ksusha.positions INCLUDING ALL
+        );
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_tables WHERE schemaname = 'dm_ksusha' AND tablename = 'skills_group') THEN
+        CREATE TABLE dm_ksusha.skills_group (
+            LIKE dds_ksusha.skills_group INCLUDING ALL
+        );
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_tables WHERE schemaname = 'dm_ksusha' AND tablename = 'skills') THEN
+        CREATE TABLE dm_ksusha.skills (
+            LIKE dds_ksusha.skills INCLUDING ALL
+        );
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_tables WHERE schemaname = 'dm_ksusha' AND tablename = 'levels') THEN
+        CREATE TABLE dm_ksusha.levels (
+            LIKE dds_ksusha.levels INCLUDING ALL
+        );
+    END IF;
+END
+$$;
+
 CREATE TABLE IF NOT EXISTS dm_ksusha.now(
     id SERIAL NOT NULL PRIMARY KEY,
     year INT NOT NULL,
@@ -66,15 +101,15 @@ CREATE TABLE IF NOT EXISTS dm_ksusha.employees_statistic(
     marker VARCHAR(50) NOT NULL,
     start_year INT NOT NULL,
     finish_year INT NOT NULL,
-    empl_id INT NOT NULL,
-    dep_id INT NOT NULL,
-    pos_id INT NOT NULL,
-    group_id INT NOT NULL,
-    skill_id INT NOT NULL,
-    level_id INT NOT NULL,
+    empl_id INT NOT NULL REFERENCES dm_ksusha.employees(id),
+    dep_id INT NOT NULL REFERENCES dm_ksusha.departments(id),
+    pos_id INT NOT NULL REFERENCES dm_ksusha.positions(id),
+    group_id INT NOT NULL REFERENCES dm_ksusha.skills_group(id),
+    skill_id INT NOT NULL REFERENCES dm_ksusha.skills(id),
+    level_id INT NOT NULL REFERENCES dm_ksusha.levels(id),
     level_change INT NOT NULL,
-    level_change_total NUMERIC NOT NULL,
-    avr_skill_level NUMERIC NOT NULL,
+    level_change_total NUMERIC(5, 2) NOT NULL,
+    avr_skill_level NUMERIC(5, 2) NOT NULL,
     empl_total_count INT NOT NULL,
     empl_count INT NOT NULL,
     empl_project_count INT NOT NULL,

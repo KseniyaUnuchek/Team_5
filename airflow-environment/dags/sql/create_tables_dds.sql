@@ -16,12 +16,12 @@ CREATE TABLE IF NOT EXISTS dds_ksusha.levels (
 );
 
 CREATE TABLE IF NOT EXISTS dds_ksusha.departments (
-    id SERIAL NOT NULL PRIMARY KEY,
+    id INT NOT NULL PRIMARY KEY,
     department TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS dds_ksusha.positions (
-    id SERIAL NOT NULL PRIMARY KEY,
+    id INT NOT NULL PRIMARY KEY,
     position VARCHAR(50) NOT NULL
 );
 
@@ -47,7 +47,21 @@ CREATE TABLE IF NOT EXISTS dds_ksusha.skills_levels (
     level_id INT NOT NULL REFERENCES dds_ksusha.levels(id),
     date DATE NOT NULL
 );
+/* Создание маппинг-таблиц */
 
+CREATE TABLE IF NOT EXISTS dds_ksusha.m_departments (
+    old_id SERIAL NOT NULL,
+    id INT NULL,
+    old_department TEXT NOT NULL,
+    department TEXT NULL
+);
+
+CREATE TABLE IF NOT EXISTS dds_ksusha.m_positions (
+    old_id SERIAL NOT NULL,
+    id INT NULL,
+    old_position VARCHAR(50) NOT NULL,
+    position VARCHAR(50) NULL
+);
 
 /* Создание слоя данных с ошибками */
 CREATE TABLE IF NOT EXISTS bad_dds_ksusha.skills_group (
