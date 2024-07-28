@@ -8,7 +8,7 @@ def get_create_schema(dag, schema_name, task_id):
                                 dag=dag)
 
 
-def get_create_tables(dag,sql_script):
+def get_create_tables(dag, sql_script):
     return SQLExecuteQueryOperator(task_id="create_tables",
                                 sql=f"{sql_script}",
                                 conn_id="etl_db_5",
