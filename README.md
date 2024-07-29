@@ -21,7 +21,7 @@
 - - - [create_table.py](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/scripts/create_table.py)
 - - - [create_tables_ods.sql](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/sql/create_tables_ods.sql)
 - - - [truncate_tables.sql](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/sql/truncate_tables.sql)
- - [fill_dds_layer.py](airflow-environment/dags/fill_dds_layer.py) - ДАГ, формирующий и заполняющий DDS-слой(dds_ksusha) данными в соответствии с ER-диаграммой, а так же одновременно заполняющий слой-копию с ошибочными данными (bad_dds_ksusha)
+ - [fill_dds_layer.py](dags/fill_dds_layer.py) - ДАГ, формирующий и заполняющий DDS-слой(dds_ksusha) данными в соответствии с ER-диаграммой, а так же одновременно заполняющий слой-копию с ошибочными данными (bad_dds_ksusha)
  - - Исполняемые скрипты:
  - - - [fill_data.py](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/scripts/fill_data.py)
 - - - [create_table.py](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/scripts/create_table.py)
@@ -34,7 +34,7 @@
 - - - [fill_dds_employees.sql](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/sql/fill_dds_employees.sql)
 - - - [fill_dds_cv_dar.sql](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/sql/fill_dds_cv_dar.sql)
 - - - [fill_dds_skills_levels.sql](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/sql/fill_dds_skills_levels.sql)
-- [fill_dm_layer.py](airflow-environment/dags/fill_dm_layer.py) - ДАГ, формирующий и заполняющий DM-слой(dm_ksusha) данными в соответствии с постановкой от аналитиков
+- [fill_dm_layer.py](dags/fill_dm_layer.py) - ДАГ, формирующий и заполняющий DM-слой(dm_ksusha) данными в соответствии с постановкой от аналитиков
 - -  Исполняемые скрипты:
  - - - [fill_data.py](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/scripts/fill_data.py)
 - - - [create_table.py](https://github.com/KseniyaUnuchek/Team_5/blob/main/airflow-environment/dags/scripts/create_table.py)

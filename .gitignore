@@ -1,7 +1,7 @@
-airflow-environment/logs
+logs/
 
-airflow-environment/dags/__*
+dags/dags/__*
 
-airflow-environment/dags/scripts/__*
+dags/scripts/__*
 
 .idea/*
