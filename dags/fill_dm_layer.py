@@ -9,7 +9,7 @@ from scripts.fill_tables import get_fill_table
 with DAG(
     dag_id="create_and_fill_tables_dm",
     description="create_and_fill_tables_in_dm_layer",
-    schedule_interval="@once",
+    schedule_interval=None,
     start_date=datetime.datetime(2024, 7, 2, tzinfo=datetime.UTC),
     catchup=False,
 ) as dag:

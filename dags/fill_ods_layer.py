@@ -8,7 +8,7 @@ from scripts.fill_data import get_fill_tables, get_truncate_table
 with DAG(
     dag_id="create_and_fill_tables_ods",
     description="create_tables_in_ods_layer",
-    schedule_interval="@once",
+    schedule_interval=None,
     start_date=datetime.datetime(2024, 7, 2, tzinfo=datetime.UTC),
     catchup=False,
 ) as dag:
