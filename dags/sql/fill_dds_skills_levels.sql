@@ -1,29 +1,3 @@
-CREATE SEQUENCE IF NOT EXISTS skills_level_id_seq
-START WITH 0
-INCREMENT BY 1
-MINVALUE 0
-MAXVALUE 170000
-CACHE 1;
-
-ALTER SEQUENCE skills_level_id_seq RESTART WITH 1;
-
-INSERT INTO dds_ksusha.skills_levels (id, empl_id, skill_id, level_id, date)
-WITH cross_table AS (
-    SELECT
-        e.id AS empl_id,
-        s.id AS skill_id
-    FROM dds_ksusha.employees AS e
-    CROSS JOIN dds_ksusha.skills AS s
-)
-
-SELECT
-    nextval('skills_level_id_seq') AS id,
-    cross_table.empl_id,
-    cross_table.skill_id,
-    0 AS level_id,
-    to_date('2000-01-01', 'YYYY-MM-DD') AS date
-FROM cross_table;
-
 INSERT INTO dds_ksusha.skills_levels (id, empl_id, skill_id, level_id, date)
 WITH src AS (
     SELECT *

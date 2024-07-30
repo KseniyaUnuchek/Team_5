@@ -33,6 +33,14 @@ SELECT
     5 AS group_id
 FROM ods_ksusha."технологии";
 
+UPDATE dds_ksusha.skills
+SET skill_name = 'DWH_Tarantool'
+WHERE id = 238998;
+
+UPDATE dds_ksusha.skills
+SET skill_name = 'DWH_Vertica'
+WHERE id = 238999;
+
 INSERT INTO dds_ksusha.skills (id, skill_name, group_id)
 SELECT
     id,
@@ -46,6 +54,10 @@ SELECT
     "название",
     7 AS group_id
 FROM ods_ksusha."языки_программирования";
+
+UPDATE dds_ksusha.skills
+SET skill_name = 'C#'
+WHERE id = 115713;
 
 INSERT INTO dds_ksusha.skills (id, skill_name, group_id)
 SELECT
